@@ -1,10 +1,6 @@
 # Pokemon-Memory-Game
 Pokemon Memory Card Game
 
-# Quizzical
-
-## Final project of Scrimba React Course
-
 ### Игра на память, которая связана с покемонами
 
 ### Стек технологий
