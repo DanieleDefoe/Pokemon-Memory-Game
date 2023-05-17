@@ -10,9 +10,11 @@ export default function Main() {
   const [clickedPokemons, setClickedPokemons] = useState([])
   const [score, setScore] = useState(0)
   const [bestScore, setBestScore] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchPokemons() {
+      setLoading(true)
       const promises = []
       for (let i = 1; i < 13; i += 1) {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
@@ -26,6 +28,7 @@ export default function Main() {
           id,
         }))
         setPokemonsData(pokemons)
+        setLoading(false)
       })
     }
 
@@ -67,11 +70,9 @@ export default function Main() {
     setPokemonsData(shuffledPokemons)
   }
 
-  console.log(clickedPokemons)
-
   return (
     <main className="w-full gap-8 bg-slate-200 max-w-[1024px] mt-14 mx-auto flex flex-col items-center px-4">
-      {pokemonsData.length === 0 ? (
+      {loading ? (
         <img src={Loading} className="w-full max-w-[300px] rounded-[30px]" />
       ) : (
         <>
